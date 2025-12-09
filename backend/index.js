@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 app.get("/api/empleados", async (req, res) => {
   try {
     const pool = await getPool();
-    const result = await pool.query("SELECT * FROM Empleado");
+    const result = await pool.request().query("SELECT * FROM Empleado");
     res.json(result.recordset);
   } catch (error) {
     console.error("Error en /api/empleados:", error);
@@ -28,7 +28,7 @@ app.get("/api/empleados", async (req, res) => {
 app.get("/api/clientes", async (req, res) => {
   try {
     const pool = await getPool();
-    const result = await pool.query("SELECT * FROM Clientes");
+    const result = await pool.request().query("SELECT * FROM Clientes");
     res.json(result.recordset);
   } catch (error) {
     console.error("Error en /api/clientes:", error);
@@ -40,7 +40,7 @@ app.get("/api/clientes", async (req, res) => {
 app.get("/api/productos", async (req, res) => {
   try {
     const pool = await getPool();
-    const result = await pool.query("SELECT * FROM Productos");
+    const result = await pool.request().query("SELECT * FROM Productos");
     res.json(result.recordset);
   } catch (error) {
     console.error("Error en /api/productos:", error);
@@ -52,7 +52,7 @@ app.get("/api/productos", async (req, res) => {
 app.get("/api/compras", async (req, res) => {
   try {
     const pool = await getPool();
-    const result = await pool.query("SELECT * FROM Compras");
+    const result = await pool.request().query("SELECT * FROM Compras");
     res.json(result.recordset);
   } catch (error) {
     console.error("Error en /api/compras:", error);
@@ -64,7 +64,7 @@ app.get("/api/compras", async (req, res) => {
 app.get("/api/ventas", async (req, res) => {
   try {
     const pool = await getPool();
-    const result = await pool.query("SELECT * FROM Ventas");
+    const result = await pool.request().query("SELECT * FROM Ventas");
     res.json(result.recordset);
   } catch (error) {
     console.error("Error en /api/ventas:", error);

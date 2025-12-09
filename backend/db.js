@@ -1,5 +1,6 @@
-require("dotenv").config();
+// db.js
 const sql = require("mssql");
+require("dotenv").config();
 
 const config = {
     user: process.env.DB_USER,
@@ -13,15 +14,20 @@ const config = {
     }
 };
 
-async function getConnection() {
+let pool;
+
+async function getPool() {
     try {
-        const pool = await sql.connect(config);
-        console.log("✅ Conectado a SQL Server correctamente.");
+        if (!pool) {
+            console.log("Conectando a SQL Server...");
+            pool = await sql.connect(config);
+            console.log("🔥 Conexión exitosa a SQL Server");
+        }
         return pool;
     } catch (error) {
-        console.error("❌ ERROR DE CONEXIÓN:", error);
+        console.error("❌ Error conectando a SQL Server:", error);
         throw error;
     }
 }
 
-module.exports = { sql, getConnection };
+module.exports = { getPool };
